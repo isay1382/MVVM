@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mvvm_tow.network.Resource
-import com.example.mvvm_tow.repository.AuthRepository
-import com.example.mvvm_tow.responses.LoginResponse
+import com.example.mvvm_tow.data.network.Resource
+import com.example.mvvm_tow.data.repository.AuthRepository
+import com.example.mvvm_tow.data.responses.LoginResponse
 import kotlinx.coroutines.launch
 
 class AuthViewModel(
@@ -24,4 +24,9 @@ class AuthViewModel(
         _loginResponse.value = repository.login(email,password)
 
     }
+
+    fun saveAuthToken(token:String) = viewModelScope.launch{
+        repository.saveAuthToken(token)
+    }
+
 }

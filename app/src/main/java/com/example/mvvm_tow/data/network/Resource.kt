@@ -1,4 +1,4 @@
-package com.example.mvvm_tow.network
+package com.example.mvvm_tow.data.network
 
 import okhttp3.ResponseBody
 

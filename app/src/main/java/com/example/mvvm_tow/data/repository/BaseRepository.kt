@@ -1,6 +1,6 @@
-package com.example.mvvm_tow.repository
+package com.example.mvvm_tow.data.repository
 
-import com.example.mvvm_tow.network.Resource
+import com.example.mvvm_tow.data.network.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException

@@ -2,8 +2,8 @@ package com.example.mvvm_tow.ui.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.mvvm_tow.repository.AuthRepository
-import com.example.mvvm_tow.repository.BaseRepository
+import com.example.mvvm_tow.data.repository.AuthRepository
+import com.example.mvvm_tow.data.repository.BaseRepository
 import com.example.mvvm_tow.ui.auth.AuthViewModel
 
 @Suppress("UNCHECKED_CAST")

@@ -1,6 +1,5 @@
-package com.example.mvvm_tow.network
+package com.example.mvvm_tow.data.network
 
-import androidx.datastore.preferences.protobuf.Api
 import androidx.multidex.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

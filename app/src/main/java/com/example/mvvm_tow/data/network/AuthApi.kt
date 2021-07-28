@@ -1,6 +1,6 @@
-package com.example.mvvm_tow.network
+package com.example.mvvm_tow.data.network
 
-import com.example.mvvm_tow.responses.LoginResponse
+import com.example.mvvm_tow.data.responses.LoginResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
