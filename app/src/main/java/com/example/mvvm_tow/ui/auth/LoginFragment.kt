@@ -32,7 +32,7 @@ class LoginFragment : BaseFragment<AuthViewModel,FragmentLoginBinding,AuthReposi
             binding.progressbar.visible(false)
             when(it){
                 is Resource.Success -> {
-                        viewModel.saveAuthToken(it.value.user.access_token)
+                        viewModel.saveAuthToken(it.value.user.access_token!!)
                         requireActivity().startNewActivity(HomeActivity::class.java)
                 }
                 is Resource.Failure-> {

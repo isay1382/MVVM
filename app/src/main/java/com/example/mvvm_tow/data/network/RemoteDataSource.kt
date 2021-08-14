@@ -11,11 +11,19 @@ class RemoteDataSource {
         private const val BASE_URL = "http://simplifiedcoding.tech/mywebapp/public/api/"
     }
 
-    fun<Api> buildApi(api: Class<Api>) : Api {
+    fun<Api> buildApi(
+        api: Class<Api>,
+        authToken: String? = null
+    ) : Api {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(
-                OkHttpClient.Builder().also { client ->
+                OkHttpClient.Builder()
+                    .addInterceptor { chain ->
+                        chain.proceed(chain.request().newBuilder().also {
+                            it.addHeader("Authorization", "Bearer $authToken")
+                        }.build())
+                    }.also { client ->
                     if (BuildConfig.DEBUG) {
                         val logging = HttpLoggingInterceptor()
                         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
