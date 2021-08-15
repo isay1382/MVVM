@@ -14,6 +14,7 @@ import com.example.mvvm_tow.data.network.Resource
 import com.example.mvvm_tow.data.repository.AuthRepository
 import com.example.mvvm_tow.ui.base.BaseFragment
 import com.example.mvvm_tow.ui.enable
+import com.example.mvvm_tow.ui.handleApiError
 import com.example.mvvm_tow.ui.home.HomeActivity
 import com.example.mvvm_tow.ui.startNewActivity
 import com.example.mvvm_tow.ui.visible
@@ -29,15 +30,15 @@ class LoginFragment : BaseFragment<AuthViewModel,FragmentLoginBinding,AuthReposi
         binding.buttonLogin.enable(false)
 
         viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
-            binding.progressbar.visible(false)
+            binding.progressbar.visible(it is Resource.Loading)
             when(it){
                 is Resource.Success -> {
+                    lifecycleScope.launch {
                         viewModel.saveAuthToken(it.value.user.access_token!!)
                         requireActivity().startNewActivity(HomeActivity::class.java)
+                    }
                 }
-                is Resource.Failure-> {
-                    Toast.makeText(requireContext(), "Login Failure", Toast.LENGTH_SHORT).show()
-                }
+                is Resource.Failure -> handleApiError(it)
 
             }
         })
@@ -53,8 +54,6 @@ class LoginFragment : BaseFragment<AuthViewModel,FragmentLoginBinding,AuthReposi
         binding.buttonLogin.setOnClickListener {
             val email=binding.editTextTextEmailAddress.text.toString().trim()
             val password = binding.editTextTextPassword.text.toString().trim()
-            //@todo add input validations
-            binding.progressbar.visible(true)
             viewModel.login(email, password)
 
         }
