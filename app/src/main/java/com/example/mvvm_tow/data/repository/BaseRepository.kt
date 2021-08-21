@@ -1,6 +1,7 @@
 package com.example.mvvm_tow.data.repository
 
 import com.example.mvvm_tow.data.network.Resource
+import com.example.mvvm_tow.data.network.UserApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
@@ -26,4 +27,9 @@ abstract class BaseRepository {
             }
         }
     }
+
+    suspend fun logout(api: UserApi) = safeApiCall {
+        api.logout()
+    }
+
 }

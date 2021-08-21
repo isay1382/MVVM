@@ -42,6 +42,10 @@ class HomeFragment : BaseFragment<HomeViewModel,FragmentHomeBinding,UserReposito
             }
         })
 
+        binding.buttonLogout.setOnClickListener {
+            logout()
+        }
+
     }
 
     private fun updateUI(user : User) {
